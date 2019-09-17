@@ -29,6 +29,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         if let userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageView.image = userPickedImage
+            imagePicker.dismiss(animated: true, completion: nil)
             
             guard let ciimage = CIImage(image: userPickedImage) else {
                 fatalError("Could not convert to ciimage")
@@ -55,7 +56,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 if firstResult.identifier.contains("hotdog") {
                     self.navigationItem.title = "HotDog!"
                 } else {
-                    self.navigationItem.title = "Not HotDog!"
+                    self.navigationItem.title = "Not HotDog!, (\(firstResult.identifier))"
                 }
             }
         }
